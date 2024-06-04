@@ -2,23 +2,18 @@ import { Component } from 'react';
 import 'devextreme/dist/css/dx.light.css';
 import 'devexpress-richedit/dist/dx.richedit.css';
 import { create, createOptions, ViewType, RichEditUnit, DocumentFormat, RibbonTab, RibbonButtonItem } from 'devexpress-richedit';
+import {useSelector} from 'react-redux';
 
 
 class EditorR extends Component {
- 
-  constructor(props){
-    super(props);
-    this.state = {
-      templateName: 'Sonia Pahuja'
-      }
-    }
-
+  
   rich = null;
 
     componentDidMount() {
-      var thisComponent = this;
-      console.log(thisComponent.props.templateName)
-      
+     
+      const {nameTemplate} = useSelector(state => state.template);
+      const {idTemplate} = useSelector(state => state.template);
+
         if (this.rich)
           return;
         // the createOptions() method creates an object that contains RichEdit options initialized with default values
@@ -78,12 +73,12 @@ class EditorR extends Component {
         options.events.pointerDown = () => { };
         options.events.pointerUp = () => { };
         options.events.saving = (s,e) => {
-         fetch('http://localhost:8080/create', {
+         fetch('http://localhost:8080/createTemplate', {
             method: 'POST',
             body: JSON.stringify({
-              idDoc: "Prueba xxxx Juan",
+              idDoc: idTemplate,
               xmlDoc: e.base64,
-              templateName: {templateName}
+              templateName: nameTemplate
             }),
             headers: {
              'Content-type': 'application/json; charset=UTF-8',

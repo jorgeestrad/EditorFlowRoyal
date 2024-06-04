@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import EditorR from '../components/EditorR';
+import {useSelector, useDispatch} from 'react-redux';
+import {setNewTemplate} from '../reducers/templates/templateSlice';
 
 const CreateTemplate = () => {
    const [nameTemplate, setNameTemplate] = useState('');
+   const dispatch = useDispatch();
  
     return (
         <form>
@@ -10,13 +13,13 @@ const CreateTemplate = () => {
                 type = 'text'
                 name = 'txtNameTemplate'
                 value={nameTemplate}
-                onChange={ev => setNameTemplate(ev.target.value)}
+                onChange={() => {
+                    dispatch(setNewTemplate({idTemplate: 1,nameTemplate: ev.target.value,isNew:true,xmlBase64:''}))
+                }}
+
             >
             </input>
-            <p>Resultado : {nameTemplate}</p>
-            <EditorR 
-                templateName = {nameTemplate}
-            />
+            <EditorR />
       </form>
     );
 }
