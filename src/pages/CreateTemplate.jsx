@@ -1,25 +1,42 @@
 import { useState } from 'react';
 import EditorR from '../components/EditorR';
+import TemplateEditor from '../components/TemplateEditor';
 import {useSelector, useDispatch} from 'react-redux';
 import {setNewTemplate} from '../reducers/templates/templateSlice';
 
 const CreateTemplate = () => {
-   const [nameTemplate, setNameTemplate] = useState('');
    const dispatch = useDispatch();
- 
+   const ntem = '';
+
+   function handleChange(event) {
+    
+    ntem = event.target.value;
+
+    dispatch(setNewTemplate(
+        {
+            idTemplate: '1retttttttrree343',
+            nameTemplate:ntem,
+            isNew:true,
+            xmlBase64:''
+        }
+    ))
+  
+  }
+
+  const {nameTemplate} = useSelector(state => state.template);
+  const {idTemplate}  = useSelector(state => state.template);
+  
+
+  console.log('nombre template :' + nameTemplate);
     return (
         <form>
             <input
                 type = 'text'
                 name = 'txtNameTemplate'
-                value={nameTemplate}
-                onChange={() => {
-                    dispatch(setNewTemplate({idTemplate: 1,nameTemplate: ev.target.value,isNew:true,xmlBase64:''}))
-                }}
-
+                onChange={handleChange}
             >
             </input>
-            <EditorR />
+            <EditorR  templateData = {{nameTemplate : nameTemplate,idTemplate : idTemplate}}/>
       </form>
     );
 }

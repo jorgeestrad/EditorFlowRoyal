@@ -6,20 +6,24 @@ import {useSelector} from 'react-redux';
 
 
 class EditorR extends Component {
-  
-  rich = null;
+   
+  constructor(props){
+    super(props);
+    this.state = {
+       //states
+    };
+  }
 
+    rich = null;
+   
+   
     componentDidMount() {
      
-      const {nameTemplate} = useSelector(state => state.template);
-      const {idTemplate} = useSelector(state => state.template);
-
-        if (this.rich)
+     if (this.rich)
           return;
         // the createOptions() method creates an object that contains RichEdit options initialized with default values
         const options = createOptions();
-    
-     
+         
       console.log(options);  
       
        var ribbonTabHome = options.ribbon.getTab(0);
@@ -73,12 +77,13 @@ class EditorR extends Component {
         options.events.pointerDown = () => { };
         options.events.pointerUp = () => { };
         options.events.saving = (s,e) => {
+        
          fetch('http://localhost:8080/createTemplate', {
             method: 'POST',
             body: JSON.stringify({
-              idDoc: idTemplate,
+              idDoc: this.props.templateData.idTemplate,
               xmlDoc: e.base64,
-              templateName: nameTemplate
+              templateName: this.props.templateData.nameTemplate
             }),
             headers: {
              'Content-type': 'application/json; charset=UTF-8',
@@ -108,9 +113,6 @@ class EditorR extends Component {
               var position = this.rich.selection.active;
               subDocument.insertText(position, 'El cielo es azul y mi equipo ......');
      
-                            
-                             
-    
               break;
             
              default:
@@ -131,7 +133,7 @@ class EditorR extends Component {
         options.width = '1400px';
         options.height = '900px';
     
-        
+       
         this.rich = create(document.getElementById("richEdit"), options);
     
       
@@ -139,13 +141,15 @@ class EditorR extends Component {
 
         this.rich.openDocument(documentAsBase64,
            'DocumentName', DocumentFormat.OpenXml);
-      }
+    }
 
   render() {
-
-   
+    
     return (
-       <div id="richEdit"></div>
+      <div>
+         <p> {this.props.templateName}</p>
+          <div id="richEdit"></div>
+       </div>
     );
   }
 }

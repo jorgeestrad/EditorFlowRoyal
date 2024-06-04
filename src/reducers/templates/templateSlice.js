@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  idTemplate : 0,
-  nameTemplate: "",
+  idTemplate : 'tet6636363j3j3j3j',
+  nameTemplate: "Plantilla de prueba",
   isNew : true,
   xmlBase64 : ""
 }
