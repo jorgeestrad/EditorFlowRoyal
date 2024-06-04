@@ -24,4 +24,5 @@ const CreateTemplate = () => {
     );
 }
 
+
 export default CreateTemplate;
