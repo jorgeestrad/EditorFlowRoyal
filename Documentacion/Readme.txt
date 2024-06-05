@@ -3,6 +3,9 @@ React Router
 https://www.youtube.com/watch?v=qM8T4wXG2V4
 
 
+Firebase APIs
+https://medium.com/angular-in-depth/building-an-api-with-firebase-6108a207c1fd
+
 
 Redux
 https://www.youtube.com/watch?v=SFyAZFrjDBA
