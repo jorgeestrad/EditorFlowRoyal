@@ -2,8 +2,6 @@ import { Component } from 'react';
 import 'devextreme/dist/css/dx.light.css';
 import 'devexpress-richedit/dist/dx.richedit.css';
 import { create, createOptions, ViewType, RichEditUnit, DocumentFormat, RibbonTab, RibbonButtonItem } from 'devexpress-richedit';
-import {useSelector} from 'react-redux';
-
 
 class EditorR extends Component {
    

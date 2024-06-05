@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  idTemplate : 'tet6636363j3j3j3j',
-  nameTemplate: "Plantilla de prueba",
+  idTemplate : 'vewwwrrrerere',
+  nameTemplate: "Plantilla de prueba 2 noche",
   isNew : true,
   xmlBase64 : ""
 }
@@ -18,7 +18,7 @@ export const templateSlice = createSlice({
         state.xmlBase64 = action.xmlBase64;
     },
     unsetTemplate : (state) => {
-        idTemplate = 0;
+        state.idTemplate = 0;
         state.isNew = false;
         state.name = "";
         state.xmlBase64 = "";

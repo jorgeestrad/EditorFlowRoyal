@@ -1,12 +1,10 @@
-import { useState } from 'react';
 import EditorR from '../components/EditorR';
-import TemplateEditor from '../components/TemplateEditor';
 import {useSelector, useDispatch} from 'react-redux';
 import {setNewTemplate} from '../reducers/templates/templateSlice';
 
 const CreateTemplate = () => {
    const dispatch = useDispatch();
-   const ntem = '';
+   var ntem = '';
 
    function handleChange(event) {
     
